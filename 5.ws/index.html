@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="clock"></div>
+  <script>
+    let clock = document.querySelector('#clock');
+    let soket = new WebSocket('ws://localhost:3000');
+
+    soket.onopen = function () {
+      console.log('1.客户端连接上了服务器')
+      soket.send('3.你好')
+    }
+
+    soket.onmessage = function (event) {
+      console.log('6.' + event.data)
+    }
+  </script>
+</body>
+</html>

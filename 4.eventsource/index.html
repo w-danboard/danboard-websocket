@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="clock"></div>
+  <script>
+    let clock = document.querySelector('#clock');
+    let evtSource = new EventSource('/clock');
+
+    // 监听服务器发过来的信息
+    evtSource.onmessage = function (e) {
+      console.log(e);
+      let msg = e.data;
+      clock.innerHTML = msg;
+    }
+
+    // 监听连接请求失败的错误事件
+    evtSource.onerror = function (e) {
+
+    }
+  </script>
+</body>
+</html>
